@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online Examination System</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Online Examination System</h1>
+        <hr>
+        <form>
+        <ol>
+            <li v-for='ques in questions'>
+                <div class="row"></div>
+
+                <p>{{ ques.question }} <span class="label label-danger AnswerQuestionLabel" v-show="!ques.answered">Please tick one answer</span></p>
+
+                <div :class="sel.col">
+                    <input type="radio" :name="'answer'+ques.id" v-model="ques.answered" :value="ques.option1"> {{ ques.option1 }}
+                </div>
+
+                <div :class="sel.col">
+                    <input type="radio" :name="'answer'+ques.id" v-model="ques.answered" :value="ques.option2"> {{ ques.option2 }}
+                </div>
+
+                <div :class="sel.col">
+                    <input type="radio" :name="'answer'+ques.id" v-model="ques.answered" :value="ques.option3"> {{ ques.option3 }}
+                </div>
+
+                <div :class="sel.col">
+                    <input type="radio" :name="'answer'+ques.id" v-model="ques.answered" :value="ques.option4"> {{ ques.option4 }}
+                </div>
+
+                <div class="row"></div>
+            </li>
+        </ol>
+        <!-- <div :class="sel.group">
+            <center>
+                <button @click="checkResult()" :class="sel.btn+' btn1'">Finish</button>
+            </center>
+        </div> -->
+        <input type="submit" value="Finish" @click.prevent.stop="checkResult($event)" :class="sel.btn + ' btn1'">
+        <!-- <pre class="code">
+			{{ $data }}
+		</pre> -->
+		</form>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
